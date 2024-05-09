@@ -13,31 +13,48 @@ router.post(
   [
     body("email").isEmail(),
     body("name").isLength({ min: 5 }),
-    body("password", "incorrect password").isLength({ min: 5 }),
+    body("password", "Password must be at least 5 characters long").isLength({
+      min: 5,
+    }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const salt = await bcryptjs.genSalt(10);
-    let securepassword = await bcryptjs.hash(req.body.password, salt);
+
+    const { name, email, password } = req.body;
 
     try {
-      await User.create({
-        name: req.body.name,
-        password: securepassword,
-        email: req.body.email,
-      
-      });
+      // Check if the email is already in use
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        return res
+          .status(400)
+          .json({ error: "Email address is already in use" });
+      }
 
+      // Hash the password
+      const salt = await bcryptjs.genSalt(10);
+      const hashedPassword = await bcryptjs.hash(password, salt);
+
+     
+     
+
+      await User.create({
+        name,
+        email,
+        password: hashedPassword,
+      });
+      console.log("created succeffuly");
       res.json({ success: true });
     } catch (error) {
-      console.log(error);
-      res.json({ success: false });
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
     }
   }
 );
+
 router.post(
     "/loginuser",
     [

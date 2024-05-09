@@ -1,38 +1,237 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.AuthContent {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.AuthContent .left {
+  flex: 1;
+  background-image: url("https://cdn.papershift.com/20220523200629/employee-time-tracking-the-way-you-want-it-to-work-by-Papershift-min-scaled-910x500.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.AuthContent .right {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+}
+.AuthContent span {
+  font-size: 15px;
+  cursor: pointer;
+}
+.singCont {
+  text-align: center;
+}
+.singCont form {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+.singCont {
+  font-family: Arial, sans-serif;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
 }
 
-.App-link {
-  color: #61dafb;
+.singCont h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.singCont p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.singCont form input {
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.singCont form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.singCont form button:hover {
+  background-color: #0056b3;
+}
+
+body {
+  background-color: #acbada;
+}
+
+.sidebar {
+  width: 4.5rem;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+
+  align-items: center;
+  transition: width 0.5s ease;
+
+  flex-direction: column;
+}
+.sidebar ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#icon {
+  margin: 2vw;
+  font-size: 2rem;
+  color: #eee8f6;
+}
+.sidebar ul li a {
+  color: inherit;
+}
+.sidebar ul li {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  list-style: none;
+  color: #7091e6;
+
+  margin-top: 1vw;
+  font-size: 1.2rem;
+  transition: 0.2s;
+  border-radius: 10px;
+}
+.sidebar ul li:hover {
+  background-color: #eee8f6;
+}
+
+/* nav  */
+
+nav {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: rgba(118, 81, 128, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+nav h1 {
+  font-size: 2rem;
+  font-weight: 300;
+}
+nav h1 span {
+  font-weight: 500;
+}
+nav ul {
+  display: flex;
+  align-items: center;
+}
+nav ul li {
+  margin-left: 20px;
+  list-style: none;
+}
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+#tooglebutton {
+  display: none;
+}
+.dropbtn {
+    position: relative;
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
   }
-  to {
-    transform: rotate(360deg);
+  .dropdown-content
+  {
+    background-color: #fff;
+    width: 20vw;
+    text-align: center;
+    top: 70px;
+    right: 30px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+  }
+  .dropdown-content a
+  {
+    padding: 10px 20px;
+  }
+  
+
+.Container {
+  border: 1px solid black;
+  background-color: aliceblue;
+  height: 95vh;
+  width: calc(100vw - 4.5rem);
+  margin: 10px;
+  position: fixed;
+  border: none;
+  outline: none;
+
+  border-radius: 20px;
+  margin-left: 4.5rem;
+}
+@media (max-width: 700px) {
+  .AuthContent {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+  }
+  main {
+    position: relative;
+  }
+  .sidebar {
+    margin-top: 15vh;
+    width: 0;
+    background-color: #007bff;
+    position: absolute;
+    overflow: hidden;
+    z-index: 99;
+  }
+  .sidebar.hidden {
+    width: 4.5rem;
+  }
+  .AuthContent .left {
+    display: none;
+    flex: 1 1;
+    background-image: url(https://cdn.papershift.com/20220523200629/employee-time-tracking-the-way-you-want-it-to-work-by-Papershift-min-scaled-910x500.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .Container {
+    width: 100%;
+    margin-left: 0rem;
+    height: 100%;
+  }
+  #tooglebutton {
+    display: block;
   }
 }
