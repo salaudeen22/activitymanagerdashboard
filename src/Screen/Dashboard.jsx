@@ -1,27 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../Component/Sidebar";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import TotalScreenTime from "../Component/TotalScreenTime";
+import AverageScreenTime from "../Component/AverageScreenTime";
+import SummaryPieGraph from "../Component/SummaryPieGraph";
 
 function Dashboard() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const navigate = useNavigate(); 
-
-  const user = "YourUsername"; 
+  const [user, setUser] = useState("YourUsername");
+  const [data, setData] = useState({});
+  const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.clear();
-    navigate("/"); 
+    navigate("/");
   };
 
   const handleAvatarClick = () => {
     setDropdownVisible(!dropdownVisible);
   };
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
+  useEffect(() => {
+    const UserData = async () => {
+      const email = localStorage.getItem("userEmail");
+      try {
+        const response = await fetch("http://localhost:4000/api/displayuser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+          }),
+        });
+        const json = await response.json();
+        console.log(json);
+        setData(json);
+        setUser(json.name); 
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    UserData(); 
+  }, []); 
 
   return (
     <>
@@ -29,7 +57,9 @@ function Dashboard() {
       <div className="Container">
         <main>
           <nav>
-          <button onClick={toggleSidebar} id="tooglebutton">Toggle Sidebar</button>
+            <button onClick={toggleSidebar} id="tooglebutton">
+             x
+            </button>
             <h1>
               Good Day, <span>{user}</span>
             </h1>
@@ -55,6 +85,15 @@ function Dashboard() {
               </li>
             </ul>
           </nav>
+
+          <div className="section-1">
+            <div className="headerSection">
+                <TotalScreenTime data={data}/>
+                <AverageScreenTime  data={data}/>
+             
+            </div>
+            <SummaryPieGraph data={data}/>
+          </div>
         </main>
       </div>
     </>
