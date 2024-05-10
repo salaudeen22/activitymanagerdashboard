@@ -195,8 +195,13 @@ nav ul li {
   border-radius: 20px;
   margin-left: 4.5rem;
 }
-.headerSection
+.section-1
 {
+    padding: 20px;
+   
+}
+.headerSection
+{  
     padding: 20px;
     margin-top: 20px;
     display: flex;
@@ -301,4 +306,13 @@ hr {
   #tooglebutton {
     display: block;
   }
+  .TotalBox {
+    font-family: Arial, sans-serif;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    width: 48vw;
+    margin: 0 auto;
+    box-shadow: '1px 6px 20px 0px rgba(0, 0, 0, 0.15)', ;
+}
 }

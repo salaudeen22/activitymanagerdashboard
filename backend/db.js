@@ -8,6 +8,16 @@ const mongoDb = async () => {
       useUnifiedTopology: true,
     });
     console.log("Connected to MongoDB");
+    const WebCollection = mongoose.connection.db.collection("webcam");
+    const fetchData = await WebCollection.find({}).toArray();
+       
+    if (fetchData === null) {
+      console.log("Data is null");
+    } else {
+      global.WebCollection = fetchData;
+     
+
+    }
   } catch (error) {
     console.log(error);
   }

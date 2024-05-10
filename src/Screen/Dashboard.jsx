@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../Component/Sidebar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import TotalScreenTime from "../Component/TotalScreenTime";
-import AverageScreenTime from "../Component/AverageScreenTime";
-import SummaryPieGraph from "../Component/SummaryPieGraph";
+
+import HomePage from "./HomePage";
 
 function Dashboard() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -53,7 +52,7 @@ function Dashboard() {
 
   return (
     <>
-      <Sidebar isSidebarOpen={isSidebarOpen} />
+      
       <div className="Container">
         <main>
           <nav>
@@ -85,15 +84,9 @@ function Dashboard() {
               </li>
             </ul>
           </nav>
+          <HomePage data={data}/>
 
-          <div className="section-1">
-            <div className="headerSection">
-                <TotalScreenTime data={data}/>
-                <AverageScreenTime  data={data}/>
-             
-            </div>
-            <SummaryPieGraph data={data}/>
-          </div>
+         
         </main>
       </div>
     </>

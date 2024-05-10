@@ -5,7 +5,7 @@ function AverageScreenTime({ data }) {
     return <div>No screen data available</div>;
   }
   let totaltime = 0;
-  let sessionCount = 0;
+
 
   let screendata = data.screendata;
   // console.log(screendata);

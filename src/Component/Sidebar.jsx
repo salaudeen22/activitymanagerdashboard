@@ -18,7 +18,7 @@ function Sidebar({ isSidebarOpen }) {
           </Link>
         </li>
         <li>
-          <Link to="/charts">
+          <Link to="/Analytics">
             <FontAwesomeIcon icon={faChartLine} />
           </Link>
         </li>

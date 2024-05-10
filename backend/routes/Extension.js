@@ -36,4 +36,22 @@ router.post(
   }
 );
 
+router.post("/WebData",(req,res)=>
+  {
+      try
+      {
+     
+          res.send(global.WebCollection);
+    
+  
+      }
+      catch(error)
+      {
+          console.error(error.message);
+          res.send("server error")
+  
+      }
+  });
+  
+
 module.exports = router;
