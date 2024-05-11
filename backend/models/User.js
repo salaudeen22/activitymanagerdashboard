@@ -21,7 +21,8 @@ const UserSchema = new Schema({
         default: Date.now, 
         required: true
     },
-    screendata:[]
+    screendata:[],
+    restrict:[],
 });
 
 module.exports = mongoose.model('user', UserSchema);

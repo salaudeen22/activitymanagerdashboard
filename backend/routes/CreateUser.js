@@ -106,4 +106,81 @@ router.post("/displayuser", async (req, res) => {
   }
 });
 
+router.post("/restrictblock",
+[body("email").isEmail(), body("restrict").isObject()],
+async (req, res) => {
+  try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { email, restrict } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    user.restrict.push(restrict);
+    await user.save();
+
+    res.json({
+      success: true,
+      message: "Added list to user successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while adding screen data to user" });
+  }
+});
+
+router.post("/removefromrestrict",
+  [body("email").isEmail(), body("itemToRemove").isObject()],
+  async (req, res) => {
+    try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+
+      const { email, itemToRemove } = req.body;
+
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+
+      // Find the index of the item to remove in the restrict array
+      const indexToRemove = user.restrict.findIndex((item) => {
+        return (
+          item.url === itemToRemove.url &&
+          item.timeInHours === itemToRemove.timeInHours &&
+          item.type === itemToRemove.type
+        );
+      });
+
+      if (indexToRemove === -1) {
+        return res.status(404).json({ error: "Item not found in the restrict list" });
+      }
+
+      
+      user.restrict.splice(indexToRemove, 1);
+
+      await user.save();
+
+      res.json({
+        success: true,
+        message: "Removed item from restrict list successfully",
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: "An error occurred while removing item from restrict list" });
+    }
+  }
+);
+
+
 module.exports = router;

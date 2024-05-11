@@ -281,6 +281,7 @@ hr {
 .bottomsection {
   /* background-color: blue; */
   display: flex;
+  gap: 20px;
   padding: 0 10px;
   height: 60%;
 }
@@ -323,21 +324,16 @@ tr:hover {
   justify-content: center;
   align-items: center;
 }
-.middlesection
-{
+.middlesection {
   display: flex;
   gap: 20px;
   padding: 10px;
-  
-  
 }
-.Encourgamentbox
-{
+.Encourgamentbox {
   flex: 30%;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
-
 }
 .EncouragementBox {
   text-align: center;
@@ -361,9 +357,9 @@ tr:hover {
 }
 
 .encouragement-image {
-  width: 100px; 
+  width: 100px;
   height: 100px;
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 .EncouragementBox h2 {
@@ -374,34 +370,106 @@ tr:hover {
 .EncouragementBox p {
   padding: 2px;
   font-size: 17px;
- 
 }
 
 /* weekreport component */
-.weekreportGraph {
+.weekreportbox {
   width: 50%;
-  height: 100%;
+  height: 80%;
+  padding: 10px;
+  text-align: center;
+  margin: 0%;
+  padding: 0px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
  
- 
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.weekreportGraph .chart-container {
+/* BlockResist */
+.ResistedBox {
+  width: 50%;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+ 
+}
+.rtitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+.rtitle button {
+  padding: 8px 20px;
+  border-radius: 10px;
+  outline: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.rtitle button:hover {
+  background-color: #007bff;
+  color: white;
+  border: 1px solid wheat;
+}
+/* BlockResist */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.weekreportGraph .chart-title {
-  font-size: 18px;
-  font-weight: bold;
+.modal {
+  background-color: white;
+  padding: 20px;
+  width: 40vw;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.form-input {
   margin-bottom: 10px;
 }
 
-.weekreportGraph .chart {
+.form-input input,
+.form-input select,
+.form-input button {
   width: 100%;
-  height: 300px;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.form-input select {
+  /* Additional styles for select dropdown */
+}
+
+.form-input button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.form-input button:hover {
+  background-color: #0056b3;
 }
 
 
@@ -435,6 +503,7 @@ tr:hover {
   }
   .Container {
     width: 100%;
+    position: inherit;
     margin-left: 0rem;
     height: 100%;
   }
@@ -455,5 +524,24 @@ tr:hover {
     flex-flow: column;
     gap: 20px;
     padding: 10px;
+  }
+  .bottomsection {
+    /* background-color: blue; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 10px;
+    height: 100%;
 }
+.weekreportbox {
+  width: 100%;
+  height: 80%;
+  padding: 10px;
+  text-align: center;
+  margin: 0%;
+  padding: 0px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}
+
 }

@@ -1,62 +1,75 @@
-// import React from 'react';
-// import { BarChart } from '@mui/x-charts/BarChart';
+import React from "react";
+import { LineChart } from "@mui/x-charts";
 
-// function Weeklyreport({ data, webdata }) {
-//     if (!data || !data.screendata || data.screendata.length === 0) {
-//         return <div>No screen data available</div>;
-//     }
+function Weeklyreport({ data }) {
+  if (!data || !data.screendata || data.screendata.length === 0) {
+    return <div>No screen data available</div>;
+  }
 
-//     // Dummy data for testing
-//     const dummyData = [
-//         { date: '2024-05-01', category: 'Productivity', trackedHours: 10 },
-//         { date: '2024-05-01', category: 'Entertainment', trackedHours: 5 },
-//         { date: '2024-05-01', category: 'Distraction', trackedHours: 8 },
-//         { date: '2024-05-02', category: 'Productivity', trackedHours: 8 },
-//         { date: '2024-05-02', category: 'Entertainment', trackedHours: 6 },
-//         { date: '2024-05-02', category: 'Distraction', trackedHours: 7 },
-//         // Add more data for other dates as needed
-//     ];
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+  const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
-//     // Extract unique dates and categories
-//     const uniqueDates = [...new Set(dummyData.map(item => item.date))];
-//     const uniqueCategories = [...new Set(dummyData.map(item => item.category))];
+  const dailyData = Array.from({ length: daysInMonth }, (_, index) => ({
+    date: new Date(currentYear, currentMonth, index + 1),
+    trackedSeconds: 0,
+  }));
 
-//     // Prepare data for the BarChart component
-//     const seriesData = uniqueDates.map(date => {
-//         const data = uniqueCategories.map(category => {
-//             const item = dummyData.find(d => d.date === date && d.category === category);
-//             return item ? item.trackedHours : 0;
-//         });
-//         return { date, data };
-//     });
+  data.screendata.forEach((item) => {
+    Object.values(item).forEach((value) => {
+      const timeStamp = new Date(value.lastDateVal);
+      // console.log("timeStamp:", timeStamp);
 
-//     const xAxisData = uniqueCategories;
+      if (
+        timeStamp.getMonth() === currentMonth &&
+        timeStamp.getFullYear() === currentYear
+      ) {
+        const dayOfMonth = timeStamp.getDate();
+        const trackedSeconds = value.trackedSeconds / 3600;
+        dailyData[dayOfMonth - 1].trackedSeconds += trackedSeconds;
+      }
+    });
+  });
 
-//     return (
-//         <div className='weekreportGraph'>
-//             <div className='chart-label'>Weekly Report</div>
-//             <div className='chart-container'>
-//                 <BarChart
-//                     className='chart'
-//                     xAxis={[{ scaleType: 'band', data: xAxisData }]}
-//                     series={seriesData}
-//                     width={300}
-//                     height={300}
-//                     xAxisLabel="Categories"
-//                     yAxisLabel="Tracked Hours"
-//                 />
-//             </div>
-//         </div>
-//     );
-// }
+  const maxSeconds = Math.max(...dailyData.map((item) => item.trackedSeconds));
 
-// export default Weeklyreport;
-import React from 'react'
-
-function Weeklyreport() {
   return (
-    <div>Weeklyreport</div>
-  )
+    <div className="weekreportbox">
+        
+      <div className="LineGraph">
+        <h3>Monthly report</h3>
+        <hr />
+        <LineChart
+          xAxis={[{ data: Array.from({ length: daysInMonth }, (_, index) => index + 1) }]}
+          series={[
+            {
+              data: dailyData.map((item) => item.trackedSeconds),
+              area: true,
+            },
+          ]}
+          options={{
+            title: {
+              text: 'Weekly Report',
+              align: 'center',
+            },
+            xAxis: {
+              title: {
+                text: 'Day of Month',
+              },
+            },
+            yAxis: {
+              title: {
+                text: 'Tracked Seconds',
+              },
+            },
+          }}
+          width={600}
+          height={300}
+        />
+      </div>
+    </div>
+  );
 }
 
-export default Weeklyreport
+export default Weeklyreport;

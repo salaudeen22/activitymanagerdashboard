@@ -24,21 +24,37 @@ const SummaryPieGraph = ({ data }) => {
    
       if (date >= currentWeekStart && date <= currentWeekEnd) {
         const url = value.url;
-        const trackedHours = value.trackedSeconds / 3600; // Convert seconds to hours
+        const trackedSeconds = value.trackedSeconds / 3600;
         
         if (urlMap.has(url)) {
-          urlMap.set(url, urlMap.get(url) + trackedHours);
+          urlMap.set(url, urlMap.get(url) + trackedSeconds);
         } else {
-          urlMap.set(url, trackedHours);
+          urlMap.set(url, trackedSeconds);
         }
       }
     });
   });
 
-  const dummyData = Array.from(urlMap.entries()).map(([url, trackedHours]) => ({
+  const dummyData = Array.from(urlMap.entries()).map(([url, trackedSeconds]) => ({
     url,
-    trackedHours, // Use trackedHours instead of trackedSeconds
+    trackedSeconds,
   }));
+
+  // Calculate average tracked seconds
+  const totalSeconds = dummyData.reduce((acc, item) => acc + item.trackedSeconds, 0);
+  const averageSeconds = totalSeconds / dummyData.length;
+
+  // Filter the data based on the average
+  const filteredData = dummyData.filter(item => item.trackedSeconds > averageSeconds);
+
+  // Calculate the total seconds of the filtered data
+  const totalFilteredSeconds = filteredData.reduce((acc, item) => acc + item.trackedSeconds, 0);
+
+  // Add an "Other" category for data that didn't make it to the filtered list
+  const otherSeconds = totalSeconds - totalFilteredSeconds;
+  if (otherSeconds > 0) {
+    filteredData.push({ url: 'Other', trackedSeconds: otherSeconds });
+  }
 
   return (
     <div className="graphContainer">
@@ -47,10 +63,10 @@ const SummaryPieGraph = ({ data }) => {
         <PieChart
           series={[
             {
-              data: dummyData.map((item) => ({
+              data: filteredData.map((item) => ({
                 argument: item.url,
-                value: item.trackedHours, // Use trackedHours instead of trackedSeconds
-                label: `${item.url} (${Math.round(item.trackedHours)}h)`, // Round hours
+                value: item.trackedSeconds,
+                label: `${item.url} (${Math.round(item.trackedSeconds/3600)}s)`,
               })),
               innerRadius: 30,
               outerRadius: 120,
