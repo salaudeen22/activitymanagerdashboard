@@ -13,27 +13,31 @@ const SummaryPieGraph = ({ data }) => {
   const currentWeekEnd = new Date(currentWeekStart); 
   currentWeekEnd.setDate(currentWeekStart.getDate() + 6); 
 
-  let screendata = data.screendata;
-  let filteredData = [];
+  const screendata = data.screendata;
+  const urlMap = new Map();
 
-  for (let i = 0; i < screendata.length; i++) {
-    const dataValues = Object.values(screendata[i]);
-    for (let j = 0; j < dataValues.length; j++) {
-      const timeStamp = dataValues[j].lastDateVal;
+  screendata.forEach(item => {
+    const dataValues = Object.values(item);
+    dataValues.forEach(value => {
+      const timeStamp = value.lastDateVal;
       const date = new Date(timeStamp);
-
    
       if (date >= currentWeekStart && date <= currentWeekEnd) {
-        filteredData.push(dataValues[j]);
+        const url = value.url;
+        const trackedHours = value.trackedSeconds / 3600; // Convert seconds to hours
+        
+        if (urlMap.has(url)) {
+          urlMap.set(url, urlMap.get(url) + trackedHours);
+        } else {
+          urlMap.set(url, trackedHours);
+        }
       }
-    }
-  }
+    });
+  });
 
-  filteredData.sort((a, b) => b.trackedSeconds - a.trackedSeconds);
-
-  const dummyData = filteredData.map((item) => ({
-    url: item.url,
-    trackedSeconds: item.trackedSeconds,
+  const dummyData = Array.from(urlMap.entries()).map(([url, trackedHours]) => ({
+    url,
+    trackedHours, // Use trackedHours instead of trackedSeconds
   }));
 
   return (
@@ -45,8 +49,8 @@ const SummaryPieGraph = ({ data }) => {
             {
               data: dummyData.map((item) => ({
                 argument: item.url,
-                value: item.trackedSeconds,
-                label: `${item.url} (${Math.round(item.trackedSeconds)}s)`,
+                value: item.trackedHours, // Use trackedHours instead of trackedSeconds
+                label: `${item.url} (${Math.round(item.trackedHours)}h)`, // Round hours
               })),
               innerRadius: 30,
               outerRadius: 120,

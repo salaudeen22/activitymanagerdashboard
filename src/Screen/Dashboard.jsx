@@ -84,6 +84,7 @@ function Dashboard() {
               </li>
             </ul>
           </nav>
+          
           <HomePage data={data}/>
 
          

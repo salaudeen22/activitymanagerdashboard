@@ -1,13 +1,16 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import TopVisitWebsite from "../Component/TopVisitWebsite";
+import Encourgamentbox from "../Component/Encourgamentbox";
+import Weeklyreport from"../Component/Weeklyreport";
 
 function Analytics() {
     const [dropdownVisible, setDropdownVisible] = useState(false);
     const [user, setUser] = useState("YourUsername");
     const [data, setData] = useState({});
+    const [webdata, setWebdata] = useState([]);
     const navigate = useNavigate();
   
     const handleLogout = () => {
@@ -38,7 +41,6 @@ function Analytics() {
             }),
           });
           const json = await response.json();
-          console.log(json);
           setData(json);
           setUser(json.name); 
         } catch (error) {
@@ -47,9 +49,27 @@ function Analytics() {
       };
       UserData(); 
     }, []); 
+
+    useEffect(() => {
+        const UserData = async () => {
+          try {
+            const response = await fetch("http://localhost:4000/api/WebData", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+            const json = await response.json();
+            setWebdata(json);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+        UserData();
+      }, []);
+
   return (
     <>
-      
     <div className="Container">
       <main>
         <nav>
@@ -81,13 +101,21 @@ function Analytics() {
             </li>
           </ul>
         </nav>
-      
 
-     
+        <div className="section-2">
+          
+          <div className="middlesection">
+           <TopVisitWebsite data={data} webdata={webdata}/>
+           <Encourgamentbox data={data} webdata={webdata}/>
+          </div>
+          <div className="bottomsection">
+           <Weeklyreport data={data} webdata={webdata}/>
+          </div>
+        </div>
       </main>
     </div>
   </>
   )
 }
 
-export default Analytics
+export default Analytics;

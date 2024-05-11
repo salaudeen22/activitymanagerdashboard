@@ -195,18 +195,15 @@ nav ul li {
   border-radius: 20px;
   margin-left: 4.5rem;
 }
-.section-1
-{
-    padding: 20px;
-   
+.section-1 {
+  padding: 20px;
 }
-.headerSection
-{  
-    padding: 20px;
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+.headerSection {
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .TotalBox {
@@ -216,7 +213,7 @@ nav ul li {
   padding: 20px;
   width: 20vw;
   margin: 0 auto;
-  box-shadow: '1px 6px 20px 0px rgba(0, 0, 0, 0.15)',
+  box-shadow: "1px 6px 20px 0px rgba(0, 0, 0, 0.15)";
 }
 
 .title {
@@ -231,9 +228,8 @@ hr {
   margin-bottom: 15px;
 }
 
-.cotent
-{
-    text-align: center;
+.cotent {
+  text-align: center;
 }
 .cotent h1 {
   font-size: 2vw;
@@ -245,30 +241,169 @@ hr {
   margin-left: 5px;
 }
 .graphContainer {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 20px;
-  }
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.graphCard {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.graphContent {
+  display: flex;
+  justify-content: center;
+}
+
+.noData {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+  margin: 20px 0;
+}
+.section-2 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.header {
+  /* background-color: red; */
+  height: 30%;
+}
+.middlesection {
+  /* background-color: brown; */
+  height: 30%;
+}
+.bottomsection {
+  /* background-color: blue; */
+  display: flex;
+  padding: 0 10px;
+  height: 60%;
+}
+.VisitBox {
+  flex: 70%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+}
+.visitTitle {
+  text-align: center;
+  margin-bottom: 10px;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+th {
+  font-weight: 700;
+  color: #0056b3;
+}
+td,
+th {
+  text-align: left;
+  padding: 5px;
+}
+
+tr:hover {
+  font-size: 1rem;
+  color: #ccc;
+  cursor: pointer;
+}
+.viewallurl {
+  margin-top: 4px;
+  text-align: center;
+  display: flex;
+  text-decoration: none;
+  color: #007bff;
+  justify-content: center;
+  align-items: center;
+}
+.middlesection
+{
+  display: flex;
+  gap: 20px;
+  padding: 10px;
   
-  .graphCard {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
   
-  .graphContent {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .noData {
-    text-align: center;
-    font-size: 18px;
-    color: #888;
-    margin: 20px 0;
-  }
-  
+}
+.Encourgamentbox
+{
+  flex: 30%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+
+}
+.EncouragementBox {
+  text-align: center;
+  margin: 0%;
+  padding: 0px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.encouragement-productivity {
+  background-color: #b3ffb3; /* Light green */
+}
+
+.encouragement-distraction {
+  background-color: #ffcccc; /* Light red */
+}
+
+.encouragement-balance {
+  background-color: #ffffcc; /* Light yellow */
+}
+
+.encouragement-image {
+  width: 100px; 
+  height: 100px;
+  margin-bottom: 10px; 
+}
+
+.EncouragementBox h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.EncouragementBox p {
+  padding: 2px;
+  font-size: 17px;
+ 
+}
+
+/* weekreport component */
+.weekreportGraph {
+  width: 50%;
+  height: 100%;
+ 
+ 
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.weekreportGraph .chart-container {
+  width: 100%;
+}
+
+.weekreportGraph .chart-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.weekreportGraph .chart {
+  width: 100%;
+  height: 300px;
+}
+
 
 @media (max-width: 700px) {
   .AuthContent {
@@ -313,6 +448,12 @@ hr {
     padding: 20px;
     width: 48vw;
     margin: 0 auto;
-    box-shadow: '1px 6px 20px 0px rgba(0, 0, 0, 0.15)', ;
+    box-shadow: "1px 6px 20px 0px rgba(0, 0, 0, 0.15)";
+  }
+  .middlesection {
+    display: flex;
+    flex-flow: column;
+    gap: 20px;
+    padding: 10px;
 }
 }

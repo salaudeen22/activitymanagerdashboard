@@ -5,6 +5,9 @@ import SummaryPieGraph from "../Component/SummaryPieGraph";
 import WorkedDisplay from "../Component/WorkedDisplay";
 
 function HomePage({ data }) {
+    if (!data.screendata || data.screendata.length === 0) {
+        return <div>Please Download and activate the extesnion</div>;
+      }
   return (
    
     <div className="section-1">
