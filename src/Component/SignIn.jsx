@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { universalurl } from "../Utils/helper";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function SignIn() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`http://localhost:4000/api/loginuser`, {
+    const response = await fetch(`${universalurl}api/loginuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

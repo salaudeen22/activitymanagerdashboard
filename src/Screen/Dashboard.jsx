@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Sidebar from "../Component/Sidebar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-
+import { universalurl } from "../Utils/helper";
 import HomePage from "./HomePage";
 
 function Dashboard() {
@@ -30,7 +30,7 @@ function Dashboard() {
     const UserData = async () => {
       const email = localStorage.getItem("userEmail");
       try {
-        const response = await fetch("http://localhost:4000/api/displayuser", {
+        const response = await fetch(`${universalurl}api/displayuser`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

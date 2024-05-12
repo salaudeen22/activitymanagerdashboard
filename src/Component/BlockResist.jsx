@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
 
-
->>>>>>> origin/master
 import React, { useState } from "react";
+import { universalurl } from "../Utils/helper";
 
 function BlockResist({ data }) {
   const [List, setList] = useState(data.restrict||[]);
@@ -39,7 +36,7 @@ function BlockResist({ data }) {
         },
       };
 
-      const response = await fetch(`http://localhost:4000/api/restrictblock`, {
+      const response = await fetch(`${universalurl}api/restrictblock`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -67,7 +64,7 @@ function BlockResist({ data }) {
       const email = localStorage.getItem("userEmail");
       const itemToRemove = List[index];
       const response = await fetch(
-        "http://localhost:4000/api/removefromrestrict",
+        `${universalurl}api/removefromrestrict`,
         {
           method: "POST",
           headers: {

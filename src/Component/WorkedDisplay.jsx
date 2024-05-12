@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { universalurl } from "../Utils/helper";
 
 function WorkedDisplay({ data }) {
   const [webdata, setWebdata] = useState([]);
@@ -6,7 +7,7 @@ function WorkedDisplay({ data }) {
   useEffect(() => {
     const UserData = async () => {
       try {
-        const response = await fetch("http://localhost:4000/api/WebData", {
+        const response = await fetch(`${universalurl}api/WebData`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

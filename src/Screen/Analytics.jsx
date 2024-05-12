@@ -11,6 +11,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import BlockResist from "../Component/BlockResist";
 import Sidebar from "../Component/Sidebar";
+import { universalurl } from "../Utils/helper";
 
 function Analytics() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -37,7 +38,7 @@ function Analytics() {
     const UserData = async () => {
       const email = localStorage.getItem("userEmail");
       try {
-        const response = await fetch("http://localhost:4000/api/displayuser", {
+        const response = await fetch(`${universalurl}api/displayuser`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

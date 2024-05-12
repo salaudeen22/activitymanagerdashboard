@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { LineChart } from "@mui/x-charts";
 import Sidebar from "../Component/Sidebar";
+import { universalurl } from "../Utils/helper";
 
 function WebsiteAnalytics() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -30,7 +31,7 @@ function WebsiteAnalytics() {
     const UserData = async () => {
       const email = localStorage.getItem("userEmail");
       try {
-        const response = await fetch("http://localhost:4000/api/displayuser", {
+        const response = await fetch(`${universalurl}api/displayuser`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

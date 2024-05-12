@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { universalurl } from "../Utils/helper";
 
 function Signup() {
   const [credentials, setCredentials] = useState({
@@ -17,7 +18,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`http://localhost:4000/api/createuser`, {
+    const response = await fetch(`${universalurl}api/createuser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
