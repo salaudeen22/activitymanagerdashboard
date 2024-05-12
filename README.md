@@ -45,6 +45,18 @@ Check out the live demo of the Activity Tracker: [Activity Tracker Live Demo](ht
 - **Backend**: Express.js, Node.js
 - **Database**: MongoDB
 
+## Implemented Features
+
+- [x] Chrome Extension for tracking website activity.
+- [x] User authentication via email addresses.
+- [x] Track activity on specific parts of websites.
+- [x] Add and delete websites to restricted lists.
+- [x] Personalized dashboard for users.
+- [x] View time spent on each website with graphical representation.
+- [x] Detailed analytics for each website.
+- [x] Categorize websites into different groups.
+
+
 ## Deployment
 The project is deployed on Netlify for frontend and Render.com for backend.
 
