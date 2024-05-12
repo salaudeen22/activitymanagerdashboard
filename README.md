@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# Activity Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+Activity Tracker is a web application and Chrome extension combo designed to help users monitor and manage their online activity. With features like universal login, monthly reports, motivation indicators, detailed analytics, and website restriction capabilities, it empowers users to stay focused and productive while browsing the web.
 
-## Available Scripts
+## Live Demo
+Check out the live demo of the Activity Tracker: [Activity Tracker Live Demo](https://main--acivitytracker.netlify.app/)
 
-In the project directory, you can run:
 
-### `npm start`
+## Screenshots
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Homepage
+![Homepage](https://drive.google.com/uc?id=1L0wJZNDWaO23ug1VhrsPj7DqBbRra2dN)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Sign In
+![Sign In](https://drive.google.com/uc?id=1dhOc4FF618TTbOeLkA6GY7MH1mu5F5PX)
 
-### `npm test`
+### Sign Up
+![Sign Up](https://drive.google.com/uc?id=1r416t4R4lTQBzuBvqOmJK410eL6swz7e)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Analytics Dashboard
+![Analytics Dashboard](https://drive.google.com/uc?id=1GSkLDoMORZmWWihBffd6-A7TD7vPMpaE)
 
-### `npm run build`
+### Add Restriction Form Image
+![Add Restriction Form Image](https://drive.google.com/uc?id=1-fZWe17ZNKgO9DbnOmrS090sBNwjbMlM)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### MongoDB Database
+![MongoDB Database](https://drive.google.com/uc?id=1pN-S70BbINVXAAi7y_MkS4BD4C_diEDK)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Features
+- **Universal Login**: Users can sign up or log in to both the extension and dashboard with a single account.
+- **Monthly Reports**: View total screen time and average screen time with inline representation for each day.
+- **Motivation Indicators**: Get insights into whether your browsing behavior is balanced, distracted, or focused.
+- **Detailed Analytics**: Dive deep into the screen time data, including top frequently visited websites and productivity flags.
+- **Website Restriction**: Add websites to block or restrict with time limits, saved in MongoDB via API.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
+1. **Sign Up/Login**: Use your account credentials to log in to the extension and dashboard.
+2. **Dashboard Overview**: Upon login, the dashboard displays monthly reports and motivation indicators.
+3. **Detailed Analytics**: Click on specific websites in the analytics section to view detailed usage data.
+4. **Website Restriction**: Manage website restrictions and blocks from the dashboard.
 
-### `npm run eject`
+## Tech Stack
+- **Frontend**: React.js (Responsive design accessible from any device)
+- **Backend**: Express.js, Node.js
+- **Database**: MongoDB
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Deployment
+The project is deployed on Netlify for frontend and Render.com for backend.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To access the extension from the GitHub repository, you can use the following link:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+[ActivityTracker GitHub Repository](https://github.com/salaudeen22/ActivityTracker.git)
 
-## Learn More
+This link will take you to the GitHub repository where you can view and access the code for the ActivityTracker extension.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
