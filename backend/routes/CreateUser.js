@@ -4,7 +4,7 @@ const User = require("../models/User");
 const { body, validationResult } = require("express-validator");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const jwtsecret = "salaudeennextceoofgoogle";
+const jwtsecret =  process.env.JWTSECRET;
 
 // http://localhost:4000/api/createuser
 router.post(

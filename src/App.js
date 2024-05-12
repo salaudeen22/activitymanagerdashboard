@@ -10,19 +10,27 @@ import React, { useState, useEffect } from "react";
 import Dashboard from './Screen/Dashboard.jsx';
 import Sidebar from './Component/Sidebar.jsx';
 import Analytics from "./Screen/Analytics.jsx";
+import WebsiteAnalystics from "./Screen/WebsiteAnalystics.jsx";
 
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
  
   return (
     <div>
       <Router>
-      <Sidebar isSidebarOpen={isSidebarOpen} />
+     
         <Routes>
           <Route path="/" element={<Authecation/>} />
+         
           <Route path="/home" element={<Dashboard/>} />
           <Route path="/Analytics" element={<Analytics/>} />
+          <Route path="/WebAnalytics/:url" element={<WebsiteAnalystics />} />
+
+
 
        
         </Routes>

@@ -52,6 +52,7 @@ function Dashboard() {
 
   return (
     <>
+    <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       
       <div className="Container">
         <main>
@@ -63,10 +64,10 @@ function Dashboard() {
               Good Day, <span>{user}</span>
             </h1>
             <ul>
-              <li>
+              <li className="bell">
                 <FontAwesomeIcon icon={faBell} />
               </li>
-              <li>
+              <li className="bell">
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </li>
               <li>

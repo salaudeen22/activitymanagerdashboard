@@ -10,6 +10,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import BlockResist from "../Component/BlockResist";
+import Sidebar from "../Component/Sidebar";
 
 function Analytics() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -75,6 +76,8 @@ function Analytics() {
 console.log(data);
   return (
     <>
+    <Sidebar isSidebarOpen={isSidebarOpen}  />
+    
       <div className="Container">
         <main>
           <nav>
@@ -90,10 +93,10 @@ console.log(data);
               </DemoContainer>
             </LocalizationProvider>
             <ul>
-              <li>
+              <li className="bell">
                 <FontAwesomeIcon icon={faBell} />
               </li>
-              <li>
+              <li className="bell">
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </li>
               <li>
