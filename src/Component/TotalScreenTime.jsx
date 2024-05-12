@@ -7,7 +7,7 @@ function TotalScreenTime({ data }) {
   let totaltime = 0;
 
   let screendata = data.screendata;
-  console.log(screendata);
+  // console.log(screendata);
   for (let i = 0; i < screendata.length; i++) {
     let data = Object.values(screendata[i]);
     for (let j = 0; j < data.length; j++) {

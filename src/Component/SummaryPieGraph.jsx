@@ -6,12 +6,15 @@ const SummaryPieGraph = ({ data }) => {
     return <div>No screen data available</div>;
   }
 
-  const currentDate = new Date(); 
-  const currentWeekStart = new Date(currentDate); 
-  currentWeekStart.setDate(currentDate.getDate() - currentDate.getDay()); 
-
-  const currentWeekEnd = new Date(currentWeekStart); 
-  currentWeekEnd.setDate(currentWeekStart.getDate() + 6); 
+  const currentDate = new Date();
+  const currentDay = currentDate.getDay();
+  const currentWeekStart = new Date(currentDate);
+  currentWeekStart.setDate(currentDate.getDate() - currentDay);
+  currentWeekStart.setHours(0, 0, 0, 0);
+  
+  const currentWeekEnd = new Date(currentWeekStart);
+  currentWeekEnd.setDate(currentWeekStart.getDate() + 6);
+ currentWeekEnd.setHours(23, 59, 59, 999); 
 
   const screendata = data.screendata;
   const urlMap = new Map();
@@ -21,8 +24,10 @@ const SummaryPieGraph = ({ data }) => {
     dataValues.forEach(value => {
       const timeStamp = value.lastDateVal;
       const date = new Date(timeStamp);
-   
+    
+  
       if (date >= currentWeekStart && date <= currentWeekEnd) {
+       
         const url = value.url;
         const trackedSeconds = value.trackedSeconds / 3600;
         
@@ -66,7 +71,7 @@ const SummaryPieGraph = ({ data }) => {
               data: filteredData.map((item) => ({
                 argument: item.url,
                 value: item.trackedSeconds,
-                label: `${item.url} (${Math.round(item.trackedSeconds/3600)}s)`,
+                label: `${item.url} (${Math.round(item.trackedSeconds/3600)}hours)`,
               })),
               innerRadius: 30,
               outerRadius: 120,

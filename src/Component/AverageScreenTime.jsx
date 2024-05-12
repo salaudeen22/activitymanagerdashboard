@@ -18,7 +18,7 @@ function AverageScreenTime({ data }) {
   const hours = Math.floor(totaltime / 3600);
 
   const averageTime = Math.floor(hours / 60);
-  console.log("average time"+averageTime);
+  // console.log("average time"+averageTime);
   return (
     <div className="TotalBox">
       <div className="title">Average Scree Time</div>

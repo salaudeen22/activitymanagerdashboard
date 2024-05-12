@@ -80,7 +80,7 @@ function Analytics() {
     };
     UserData();
   }, []);
-console.log(data);
+// console.log(data);
   return (
     <>
     <Sidebar isSidebarOpen={isSidebarOpen}  />

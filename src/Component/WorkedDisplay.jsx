@@ -37,7 +37,7 @@ function WorkedDisplay({ data }) {
     productivity: 0,
     distraction: 0,
   };
-  console.log(data);
+  // console.log(data);
 
   data.screendata.forEach((screen) => {
     const timeStamp = screen.lastDateVal;
