@@ -50,7 +50,7 @@ router.post(
         userImageURL = cloudinaryResponse ? cloudinaryResponse.url : null;
         console.log(userImageURL);
      
-        // fs.unlinkSync(req.file.path);
+        fs.unlinkSync(req.file.path);
       }
 
  

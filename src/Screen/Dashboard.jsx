@@ -46,7 +46,7 @@ function Dashboard() {
           }),
         });
         const json = await response.json();
-        // console.log(json);
+        console.log("recieved data");
         setData(json);
         setUser(json.name); 
       } catch (error) {
