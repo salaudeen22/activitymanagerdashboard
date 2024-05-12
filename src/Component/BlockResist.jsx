@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/master
 import React, { useState } from "react";
 
 function BlockResist({ data }) {
