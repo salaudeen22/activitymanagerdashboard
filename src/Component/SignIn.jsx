@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { universalurl } from "../Utils/helper";
+import Swal from "sweetalert2";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -37,8 +38,14 @@ function SignIn() {
     }
 
     if (json.success) {
+      Swal.fire({
+        title: "SignIn Succesfully!",
+      
+        icon: "success",
+      });
       localStorage.setItem("userEmail", credentials.email);
       localStorage.setItem("authtoken", json.authtoken);
+
       navigate("/home");
     }
   };

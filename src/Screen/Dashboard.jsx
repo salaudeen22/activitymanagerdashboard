@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { universalurl } from "../Utils/helper";
 import HomePage from "./HomePage";
+import Swal from "sweetalert2";
 
 function Dashboard() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -13,6 +14,11 @@ function Dashboard() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    Swal.fire({
+      title: "Logout Succesfully!",
+    
+      icon: "success",
+    });
     localStorage.clear();
     navigate("/");
   };
@@ -72,7 +78,7 @@ function Dashboard() {
               </li>
               <li>
                 <img
-                  src="https://media.licdn.com/dms/image/D5603AQHZ89xeJ1dhcw/profile-displayphoto-shrink_800_800/0/1665927196286?e=2147483647&v=beta&t=LyMdQ8B1IhxZ9qwhZXelfuuzSdDUM-1TWs3TDMmzoZg"
+                   src={data.userImage?data.userImage:"https://source.unsplash.com/random/900×700/?useravatar"}
                   alt="Avatar"
                   className="avatar"
                   onClick={handleAvatarClick}

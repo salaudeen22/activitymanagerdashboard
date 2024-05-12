@@ -1,33 +1,43 @@
 import React, { useState } from "react";
 import { universalurl } from "../Utils/helper";
+import Swal from "sweetalert2";
 
 function Signup() {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
     name: "",
+    image: null, 
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setCredentials((prevCredentials) => ({
-      ...prevCredentials,
-      [name]: value,
-    }));
+    const { name, value, files } = e.target;
+  
+    if (name === "image") {
+      setCredentials((prevCredentials) => ({
+        ...prevCredentials,
+        image: files[0],
+      }));
+    } else {
+      setCredentials((prevCredentials) => ({
+        ...prevCredentials,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const formData = new FormData();
+    formData.append("email", credentials.email);
+    formData.append("password", credentials.password);
+    formData.append("name", credentials.name);
+    formData.append("image", credentials.image);
+    
     const response = await fetch(`${universalurl}api/createuser`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: credentials.email,
-        password: credentials.password,
-        name: credentials.name,
-      }),
+      body: formData,
     });
 
     const json = await response.json();
@@ -36,7 +46,11 @@ function Signup() {
       alert("Signup failed. Please check your details and try again.");
     } else {
       alert("Signup successful!");
+      Swal.fire({
+        title: "SignUp Succesfully!",
       
+        icon: "success",
+      });
     }
   };
 
@@ -71,6 +85,14 @@ function Signup() {
           id="name"
           value={credentials.name}
           onChange={handleChange}
+          required
+        />
+        <input
+          type="file"
+          name="image"
+          id="image"
+          onChange={handleChange}
+          accept="image/*"
           required
         />
         <button type="submit">Sign Up</button>

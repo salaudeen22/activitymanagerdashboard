@@ -419,7 +419,7 @@ tr:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  background-color: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -456,8 +456,7 @@ tr:hover {
   box-sizing: border-box;
 }
 
-.form-input select {
-}
+
 
 .form-input button {
   background-color: #007bff;
@@ -485,7 +484,7 @@ tr:hover {
     position: relative;
   }
   .sidebar {
-    margin-top: 15vh;
+    margin-top: 10vh;
     width: 0;
     background-color: #007bff;
     position: absolute;
@@ -493,8 +492,12 @@ tr:hover {
     z-index: 99;
   }
   .sidebar.hidden {
-    width: 4.5rem;
+    width: 3.5rem;
   }
+  nav h1 {
+    font-size: 1rem;
+    font-weight: 300;
+}
   .AuthContent .left {
     display: none;
     flex: 1 1;
@@ -540,16 +543,54 @@ tr:hover {
     flex-direction: column;
     gap: 20px;
     padding: 0 10px;
-    height: 100%;
+    height: 100vh;
   }
   .weekreportbox {
     width: 100%;
-    height: 80%;
+    height: 50%;
     padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
     text-align: center;
     margin: 0%;
     padding: 0px;
     border: 2px solid #ccc;
     border-radius: 10px;
   }
+  .ResistedBox {
+    width: 100%;
+    height: 50%;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+}
+
+
+@media (max-width: 350px )
+{
+  .css-10o2lyd-MuiStack-root {
+    display: none;
+}
+#tooglebutton {
+  display: block;
+  padding: 5px 10px;
+}
+.headerSection {
+  padding: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 20px;
+  align-items: center;
+}
+.content h1 {
+  font-size: 7vw;
+}
+
+.cotent h1 {
+  font-size: 7vw;
+}
 }

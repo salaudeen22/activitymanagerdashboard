@@ -1,5 +1,6 @@
 import React from "react";
 import { LineChart } from "@mui/x-charts";
+import { ResponsiveChartContainer } from '@mui/x-charts';
 
 function Weeklyreport({ data }) {
   if (!data || !data.screendata || data.screendata.length === 0) {
@@ -64,8 +65,8 @@ function Weeklyreport({ data }) {
               },
             },
           }}
-          width={600}
-          height={300}
+        height={300}
+        width={400}
         />
       </div>
     </div>

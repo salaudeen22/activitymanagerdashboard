@@ -5,12 +5,16 @@ const { body, validationResult } = require("express-validator");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const jwtsecret =  process.env.JWTSECRET;
+const fs = require("fs");
+const UploadOnCloudinary = require("../utils/cloudinary.js");
+const upload = require("../middleware/multer.js");
 
 // https://activitymanagerdashboard-1.onrender.com/
 
 // http://localhost:4000/api/createuser
 router.post(
   "/createuser",
+  upload.single("image"), 
   [
     body("email").isEmail(),
     body("name").isLength({ min: 5 }),
@@ -25,9 +29,9 @@ router.post(
     }
 
     const { name, email, password } = req.body;
-
+   
     try {
-      // Check if the email is already in use
+    
       const existingUser = await User.findOne({ email });
       if (existingUser) {
         return res
@@ -35,17 +39,29 @@ router.post(
           .json({ error: "Email address is already in use" });
       }
 
-      // Hash the password
+     
       const salt = await bcryptjs.genSalt(10);
       const hashedPassword = await bcryptjs.hash(password, salt);
+      
+      let userImageURL = null;
+      if (req.file) {
+       
+        const cloudinaryResponse = await UploadOnCloudinary(req.file.path);
+        userImageURL = cloudinaryResponse ? cloudinaryResponse.url : null;
+        console.log(userImageURL);
+     
+        // fs.unlinkSync(req.file.path);
+      }
 
+ 
       await User.create({
         name,
         email,
         password: hashedPassword,
+        userImage: userImageURL,
       });
-      console.log("created succeffuly");
-      res.json({ success: true });
+      
+      res.status(201).json({ success: true, message: "User created successfully" });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: "Internal server error" });

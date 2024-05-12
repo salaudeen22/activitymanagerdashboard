@@ -1,6 +1,8 @@
 
 import React, { useState } from "react";
 import { universalurl } from "../Utils/helper";
+import Swal from "sweetalert2";
+
 
 function BlockResist({ data }) {
   const [List, setList] = useState(data.restrict||[]);
@@ -51,8 +53,13 @@ function BlockResist({ data }) {
       }
 
       if (json.success) {
+        Swal.fire({
+          title: "Logout Succesfully!",
+        
+          icon: "success",
+        });
         setShowModal(false);
-        alert("successful");
+       
       }
     } catch (error) {
       console.error("Error:", error);

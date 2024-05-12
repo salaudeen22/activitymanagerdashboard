@@ -12,6 +12,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import BlockResist from "../Component/BlockResist";
 import Sidebar from "../Component/Sidebar";
 import { universalurl } from "../Utils/helper";
+import Swal from "sweetalert2";
 
 function Analytics() {
   const [dropdownVisible, setDropdownVisible] = useState(false);
@@ -21,6 +22,11 @@ function Analytics() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    Swal.fire({
+      title: "Logout Succesfully!",
+    
+      icon: "success",
+    });
     localStorage.clear();
     navigate("/");
   };
@@ -60,7 +66,7 @@ function Analytics() {
   useEffect(() => {
     const UserData = async () => {
       try {
-        const response = await fetch("http://localhost:4000/api/WebData", {
+        const response = await fetch(`${universalurl}api/WebData`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -102,7 +108,7 @@ console.log(data);
               </li>
               <li>
                 <img
-                  src="https://media.licdn.com/dms/image/D5603AQHZ89xeJ1dhcw/profile-displayphoto-shrink_800_800/0/1665927196286?e=2147483647&v=beta&t=LyMdQ8B1IhxZ9qwhZXelfuuzSdDUM-1TWs3TDMmzoZg"
+                   src={data.userImage?data.userImage:"https://source.unsplash.com/random/900×700/?useravatar"}
                   alt="Avatar"
                   className="avatar"
                   onClick={handleAvatarClick}

@@ -12,6 +12,12 @@ const UserSchema = new Schema({
         required: true,
         unique: true
     },
+    userImage:
+    {
+      type:String,
+      required: false
+      
+    },
     password: {
         type: String,
         required: true
