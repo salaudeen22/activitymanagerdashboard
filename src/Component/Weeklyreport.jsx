@@ -1,6 +1,6 @@
 import React from "react";
 import { LineChart } from "@mui/x-charts";
-import { ResponsiveChartContainer } from '@mui/x-charts';
+
 
 function Weeklyreport({ data }) {
   if (!data || !data.screendata || data.screendata.length === 0) {
@@ -33,7 +33,7 @@ function Weeklyreport({ data }) {
     });
   });
 
-  const maxSeconds = Math.max(...dailyData.map((item) => item.trackedSeconds));
+  // const maxSeconds = Math.max(...dailyData.map((item) => item.trackedSeconds));
 
   return (
     <div className="weekreportbox">

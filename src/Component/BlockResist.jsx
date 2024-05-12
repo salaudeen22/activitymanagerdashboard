@@ -1,11 +1,17 @@
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { universalurl } from "../Utils/helper";
 import Swal from "sweetalert2";
 
 
 function BlockResist({ data }) {
-  const [List, setList] = useState(data.restrict||[]);
+  const [List, setList] = useState([]);
+
+  useEffect(() => {
+    if (data && data.restrict) {
+      setList(data.restrict);
+    }
+  }, [data]);
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     url: "",
@@ -54,7 +60,7 @@ function BlockResist({ data }) {
 
       if (json.success) {
         Swal.fire({
-          title: "Logout Succesfully!",
+          title: "Added Succesfully!",
         
           icon: "success",
         });
@@ -68,29 +74,53 @@ function BlockResist({ data }) {
 
   const removeRestrict = async (index) => {
     try {
-      const email = localStorage.getItem("userEmail");
-      const itemToRemove = List[index];
-      const response = await fetch(
-        `${universalurl}api/removefromrestrict`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, itemToRemove }),
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const email = localStorage.getItem("userEmail");
+          const itemToRemove = List[index];
+          const response = await fetch(
+            `${universalurl}api/removefromrestrict`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ email, itemToRemove }),
+            }
+          );
+    
+          const json = await response.json();
+    
+          if (!json.success) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Failed to remove item from restrict list",
+            });
+          
+          } else {
+            Swal.fire({
+              title: "Removed Succesfully!",
+            
+              icon: "success",
+            });
+            const newList = [...List];
+            newList.splice(index, 1);
+            setList(newList);
+            
+          }
+        
         }
-      );
-
-      const json = await response.json();
-
-      if (!json.success) {
-        alert("Failed to remove item from restrict list");
-      } else {
-        const newList = [...List];
-        newList.splice(index, 1);
-        setList(newList);
-        alert("Item removed successfully");
-      }
+      });
+    
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred while removing item from restrict list");
